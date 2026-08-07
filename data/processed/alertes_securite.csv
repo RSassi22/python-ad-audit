@@ -1,0 +1,190 @@
+id,nom,departement,groupe_ad,derniere_connexion,type_alerte
+1,Vanessa Thompson,Marketing,Accès_Comptabilité,2026-02-09,Compte inactif > 90 jours
+2,Kevin Chase,Opérations,Accès_Standard,2026-04-12,Compte inactif > 90 jours
+6,Adam Ray,Sécurité,Admins_Serveurs,2026-03-12,Compte inactif > 90 jours
+7,Amy Bradshaw,Finance,Accès_RH,2026-02-23,Compte inactif > 90 jours
+8,Monica Rios,Marketing,Accès_Serveurs_Bancaires,2026-03-25,Compte inactif > 90 jours
+9,Julia Martinez,RH,Accès_Serveurs_Bancaires,2026-02-24,Compte inactif > 90 jours
+10,Amy Rodriguez,Juridique,Accès_RH,2026-02-28,Compte inactif > 90 jours
+11,Clinton Harrell,RH,Accès_Standard,2026-02-24,Compte inactif > 90 jours
+14,Ray Turner,RH,Accès_Comptabilité,2026-03-13,Compte inactif > 90 jours
+16,Jason Gross,IT,Accès_Serveurs_Bancaires,2026-04-17,Compte inactif > 90 jours
+22,Scott Gibbs,RH,Accès_Serveurs_Bancaires,2026-04-05,Compte inactif > 90 jours
+23,Lisa Tucker,Juridique,Accès_Comptabilité,2026-04-12,Compte inactif > 90 jours
+24,Kayla Simon,Marketing,Admins_Serveurs,2026-03-04,Compte inactif > 90 jours
+25,Todd Santos,IT,Admins_Serveurs,2026-03-25,Compte inactif > 90 jours
+27,Jessica Todd,Juridique,Accès_RH,2026-02-07,Compte inactif > 90 jours
+29,Christina Sherman,Opérations,Accès_Standard,2026-03-07,Compte inactif > 90 jours
+30,Roberto Johnson,Opérations,Admins_Domaine,2026-04-27,Compte inactif > 90 jours
+31,Taylor Bauer,Opérations,Accès_Standard,2026-03-19,Compte inactif > 90 jours
+32,Brian Robertson,Opérations,Admins_Serveurs,2026-03-29,Compte inactif > 90 jours
+34,Elizabeth Sullivan,RH,Accès_Comptabilité,2026-02-17,Compte inactif > 90 jours
+36,Teresa Bernard,IT,Accès_RH,2026-04-03,Compte inactif > 90 jours
+38,Holly Gonzales,Opérations,Accès_Standard,2026-02-14,Compte inactif > 90 jours
+40,Holly Gordon,Finance,Accès_Standard,2026-04-07,Compte inactif > 90 jours
+41,Ronnie Bryan,Opérations,Accès_Serveurs_Bancaires,2026-05-04,Compte inactif > 90 jours
+42,James Morgan,Juridique,Accès_Serveurs_Bancaires,2026-04-05,Compte inactif > 90 jours
+44,Ryan Washington,Juridique,Accès_Serveurs_Bancaires,2026-02-22,Compte inactif > 90 jours
+45,Michael Garza,Opérations,Accès_Standard,2026-04-02,Compte inactif > 90 jours
+46,Tracey Avila,Marketing,Admins_Serveurs,2026-05-05,Compte inactif > 90 jours
+47,Anthony Waters,Juridique,Accès_Serveurs_Bancaires,2026-04-27,Compte inactif > 90 jours
+48,Stephen Bass,Opérations,Accès_Serveurs_Bancaires,2026-04-11,Compte inactif > 90 jours
+49,Wayne Thompson,Juridique,Admins_Serveurs,2026-02-24,Compte inactif > 90 jours
+51,Kenneth Davis,Sécurité,Accès_Comptabilité,2026-02-21,Compte inactif > 90 jours
+54,Samantha Sanders,RH,Admins_Domaine,2026-03-24,Compte inactif > 90 jours
+55,Daniel Fritz,IT,Admins_Serveurs,2026-04-11,Compte inactif > 90 jours
+59,Robert Lyons,Opérations,Admins_Domaine,2026-03-30,Compte inactif > 90 jours
+60,Elizabeth Clark,Juridique,Admins_Serveurs,2026-05-04,Compte inactif > 90 jours
+61,Peter Ewing,Opérations,Admins_Serveurs,2026-04-14,Compte inactif > 90 jours
+63,Jesus Garcia,RH,Admins_Domaine,2026-04-05,Compte inactif > 90 jours
+64,Antonio Lucas,IT,Accès_Serveurs_Bancaires,2026-02-16,Compte inactif > 90 jours
+66,John Foster,Finance,Admins_Serveurs,2026-02-17,Compte inactif > 90 jours
+68,Lori Parker,Marketing,Accès_Serveurs_Bancaires,2026-04-11,Compte inactif > 90 jours
+70,Sheila Quinn,RH,Accès_Serveurs_Bancaires,2026-03-31,Compte inactif > 90 jours
+72,Alexander Wells,IT,Accès_Comptabilité,2026-02-27,Compte inactif > 90 jours
+73,Catherine Mitchell,Juridique,Accès_Serveurs_Bancaires,2026-03-09,Compte inactif > 90 jours
+74,Keith Roman,Finance,Accès_Comptabilité,2026-03-06,Compte inactif > 90 jours
+77,Victor Lopez,Marketing,Admins_Domaine,2026-02-23,Compte inactif > 90 jours
+78,Daniel Velazquez,Marketing,Accès_Serveurs_Bancaires,2026-04-25,Compte inactif > 90 jours
+81,Kyle Clark,Juridique,Accès_Serveurs_Bancaires,2026-02-23,Compte inactif > 90 jours
+82,Loretta Garcia,Sécurité,Accès_Standard,2026-03-23,Compte inactif > 90 jours
+83,Louis Rodgers,Marketing,Accès_Comptabilité,2026-03-08,Compte inactif > 90 jours
+85,Carrie Rogers,Marketing,Accès_Standard,2026-02-16,Compte inactif > 90 jours
+86,Taylor Bennett,Opérations,Admins_Domaine,2026-02-25,Compte inactif > 90 jours
+87,Jordan Fletcher,Opérations,Admins_Serveurs,2026-03-22,Compte inactif > 90 jours
+89,Tony Reyes,Sécurité,Accès_RH,2026-04-27,Compte inactif > 90 jours
+91,Bethany Adams,Juridique,Accès_RH,2026-04-11,Compte inactif > 90 jours
+93,Brenda Carter,IT,Accès_Serveurs_Bancaires,2026-04-19,Compte inactif > 90 jours
+94,Jacqueline Duarte,Finance,Admins_Domaine,2026-04-02,Compte inactif > 90 jours
+95,Adrian Gonzalez,Marketing,Accès_RH,2026-04-02,Compte inactif > 90 jours
+96,Stephanie Boyer,IT,Accès_RH,2026-04-10,Compte inactif > 90 jours
+97,Nicholas Terry,Juridique,Accès_Standard,2026-02-18,Compte inactif > 90 jours
+99,Ellen Johnson,Juridique,Accès_Serveurs_Bancaires,2026-03-19,Compte inactif > 90 jours
+106,Nicholas Hammond,IT,Accès_Comptabilité,2026-02-18,Compte inactif > 90 jours
+107,Johnny Nielsen,Opérations,Accès_Comptabilité,2026-03-10,Compte inactif > 90 jours
+110,Bernard Bradshaw,IT,Admins_Serveurs,2026-03-16,Compte inactif > 90 jours
+114,Curtis Walter,Opérations,Admins_Domaine,2026-03-15,Compte inactif > 90 jours
+115,Ashley Tapia,RH,Admins_Serveurs,2026-03-15,Compte inactif > 90 jours
+116,Michelle Harris,Juridique,Accès_Standard,2026-03-14,Compte inactif > 90 jours
+117,Jennifer Compton,Finance,Accès_RH,2026-02-12,Compte inactif > 90 jours
+118,Linda Wiggins,Finance,Accès_Comptabilité,2026-02-16,Compte inactif > 90 jours
+119,Lauren Ramirez,Sécurité,Admins_Domaine,2026-03-22,Compte inactif > 90 jours
+120,Sean Briggs,Finance,Accès_RH,2026-03-27,Compte inactif > 90 jours
+122,Steven Allen,Sécurité,Accès_Standard,2026-03-08,Compte inactif > 90 jours
+124,Jamie Hudson,Opérations,Admins_Domaine,2026-04-15,Compte inactif > 90 jours
+125,Marcus Brewer,Finance,Accès_Comptabilité,2026-05-01,Compte inactif > 90 jours
+129,Jenna Duran,Opérations,Accès_RH,2026-05-03,Compte inactif > 90 jours
+130,Keith Hoffman,Opérations,Accès_Serveurs_Bancaires,2026-05-03,Compte inactif > 90 jours
+131,Gary Lamb,IT,Accès_Standard,2026-03-24,Compte inactif > 90 jours
+132,Lindsay Allen,Marketing,Admins_Serveurs,2026-03-02,Compte inactif > 90 jours
+133,Beth Acosta,IT,Accès_Serveurs_Bancaires,2026-03-11,Compte inactif > 90 jours
+135,Ian Mason,Sécurité,Admins_Domaine,2026-03-06,Compte inactif > 90 jours
+136,Donna Santos,IT,Accès_Serveurs_Bancaires,2026-03-26,Compte inactif > 90 jours
+137,Peter Williams,Juridique,Accès_RH,2026-04-02,Compte inactif > 90 jours
+138,Lisa Lewis,Finance,Accès_RH,2026-04-11,Compte inactif > 90 jours
+139,Kenneth Kim,Sécurité,Admins_Serveurs,2026-04-25,Compte inactif > 90 jours
+140,Michael Johnson,Opérations,Admins_Domaine,2026-02-20,Compte inactif > 90 jours
+141,Gregory Landry,IT,Accès_Standard,2026-02-15,Compte inactif > 90 jours
+142,Reginald White,Marketing,Accès_Comptabilité,2026-05-04,Compte inactif > 90 jours
+146,Jessica Johnson,Sécurité,Accès_RH,2026-02-18,Compte inactif > 90 jours
+147,Brenda Cunningham,Juridique,Accès_Comptabilité,2026-04-14,Compte inactif > 90 jours
+148,Charles Ward,Finance,Admins_Domaine,2026-03-24,Compte inactif > 90 jours
+154,Brian Collier,Finance,Admins_Serveurs,2026-03-03,Compte inactif > 90 jours
+155,Colin Holmes,Opérations,Accès_Serveurs_Bancaires,2026-03-27,Compte inactif > 90 jours
+156,Michael Wood,Finance,Accès_Serveurs_Bancaires,2026-03-02,Compte inactif > 90 jours
+157,Ashley Santiago,IT,Accès_Comptabilité,2026-04-20,Compte inactif > 90 jours
+159,Nicole Glenn,Sécurité,Accès_Comptabilité,2026-02-11,Compte inactif > 90 jours
+160,Katelyn Myers,IT,Accès_RH,2026-04-03,Compte inactif > 90 jours
+161,William Marquez,Sécurité,Accès_RH,2026-04-24,Compte inactif > 90 jours
+162,Beth Clarke,Opérations,Accès_Comptabilité,2026-04-14,Compte inactif > 90 jours
+164,Perry Mcdonald,Juridique,Admins_Domaine,2026-03-25,Compte inactif > 90 jours
+165,Harold Daugherty,Opérations,Admins_Domaine,2026-02-18,Compte inactif > 90 jours
+167,Sarah Rodriguez,Juridique,Accès_Serveurs_Bancaires,2026-03-04,Compte inactif > 90 jours
+171,John Osborne,Juridique,Accès_Standard,2026-03-10,Compte inactif > 90 jours
+172,Matthew Hill,IT,Accès_Serveurs_Bancaires,2026-02-26,Compte inactif > 90 jours
+174,Christopher Bailey,RH,Admins_Domaine,2026-03-15,Compte inactif > 90 jours
+177,Maria Cain,RH,Accès_Standard,2026-04-07,Compte inactif > 90 jours
+179,Carmen Smith,RH,Accès_Standard,2026-02-25,Compte inactif > 90 jours
+180,Michael Williams,Marketing,Accès_RH,2026-04-26,Compte inactif > 90 jours
+181,Colleen Little,IT,Accès_RH,2026-04-20,Compte inactif > 90 jours
+182,Lisa Snyder,Opérations,Accès_RH,2026-02-19,Compte inactif > 90 jours
+183,Patrick Mendez,Marketing,Admins_Serveurs,2026-03-16,Compte inactif > 90 jours
+185,Nicholas Mitchell,IT,Admins_Domaine,2026-03-20,Compte inactif > 90 jours
+189,Samuel Mitchell,Finance,Accès_RH,2026-03-26,Compte inactif > 90 jours
+192,David Leonard,IT,Accès_RH,2026-04-04,Compte inactif > 90 jours
+194,Courtney Benson,Opérations,Accès_Standard,2026-03-07,Compte inactif > 90 jours
+196,Ashley Kidd,RH,Accès_Serveurs_Bancaires,2026-03-15,Compte inactif > 90 jours
+197,Paula Richards,IT,Accès_Comptabilité,2026-04-21,Compte inactif > 90 jours
+198,Kimberly Villanueva,Marketing,Accès_Standard,2026-03-08,Compte inactif > 90 jours
+199,John Brown,Opérations,Accès_Standard,2026-04-14,Compte inactif > 90 jours
+200,Glenn Vazquez,IT,Admins_Serveurs,2026-02-20,Compte inactif > 90 jours
+4,Darrell Myers,Finance,Admins_Domaine,2026-06-02,Incohérence département/groupe
+6,Adam Ray,Sécurité,Admins_Serveurs,2026-03-12,Incohérence département/groupe
+8,Monica Rios,Marketing,Accès_Serveurs_Bancaires,2026-03-25,Incohérence département/groupe
+9,Julia Martinez,RH,Accès_Serveurs_Bancaires,2026-02-24,Incohérence département/groupe
+12,David Cooper,Juridique,Admins_Domaine,2026-07-03,Incohérence département/groupe
+18,Daniel Santos,Marketing,Admins_Serveurs,2026-07-04,Incohérence département/groupe
+19,Noah Salazar,Marketing,Admins_Serveurs,2026-06-17,Incohérence département/groupe
+20,Jeremy Torres,Finance,Accès_Serveurs_Bancaires,2026-06-04,Incohérence département/groupe
+22,Scott Gibbs,RH,Accès_Serveurs_Bancaires,2026-04-05,Incohérence département/groupe
+24,Kayla Simon,Marketing,Admins_Serveurs,2026-03-04,Incohérence département/groupe
+26,Miguel Flores,Marketing,Accès_Serveurs_Bancaires,2026-05-24,Incohérence département/groupe
+30,Roberto Johnson,Opérations,Admins_Domaine,2026-04-27,Incohérence département/groupe
+32,Brian Robertson,Opérations,Admins_Serveurs,2026-03-29,Incohérence département/groupe
+33,Christine Smith,Opérations,Admins_Serveurs,2026-07-23,Incohérence département/groupe
+42,James Morgan,Juridique,Accès_Serveurs_Bancaires,2026-04-05,Incohérence département/groupe
+44,Ryan Washington,Juridique,Accès_Serveurs_Bancaires,2026-02-22,Incohérence département/groupe
+46,Tracey Avila,Marketing,Admins_Serveurs,2026-05-05,Incohérence département/groupe
+47,Anthony Waters,Juridique,Accès_Serveurs_Bancaires,2026-04-27,Incohérence département/groupe
+49,Wayne Thompson,Juridique,Admins_Serveurs,2026-02-24,Incohérence département/groupe
+50,Dr. Holly Travis,Opérations,Admins_Domaine,2026-08-02,Incohérence département/groupe
+54,Samantha Sanders,RH,Admins_Domaine,2026-03-24,Incohérence département/groupe
+59,Robert Lyons,Opérations,Admins_Domaine,2026-03-30,Incohérence département/groupe
+60,Elizabeth Clark,Juridique,Admins_Serveurs,2026-05-04,Incohérence département/groupe
+61,Peter Ewing,Opérations,Admins_Serveurs,2026-04-14,Incohérence département/groupe
+62,Xavier Campbell,Opérations,Admins_Domaine,2026-06-26,Incohérence département/groupe
+63,Jesus Garcia,RH,Admins_Domaine,2026-04-05,Incohérence département/groupe
+65,Joshua Harris,Juridique,Admins_Domaine,2026-07-20,Incohérence département/groupe
+66,John Foster,Finance,Admins_Serveurs,2026-02-17,Incohérence département/groupe
+67,Tiffany Maldonado,Opérations,Admins_Domaine,2026-07-25,Incohérence département/groupe
+68,Lori Parker,Marketing,Accès_Serveurs_Bancaires,2026-04-11,Incohérence département/groupe
+69,Nicole Sanchez,RH,Admins_Serveurs,2026-05-27,Incohérence département/groupe
+70,Sheila Quinn,RH,Accès_Serveurs_Bancaires,2026-03-31,Incohérence département/groupe
+73,Catherine Mitchell,Juridique,Accès_Serveurs_Bancaires,2026-03-09,Incohérence département/groupe
+76,Kimberly Gonzalez,Juridique,Admins_Domaine,2026-05-18,Incohérence département/groupe
+77,Victor Lopez,Marketing,Admins_Domaine,2026-02-23,Incohérence département/groupe
+78,Daniel Velazquez,Marketing,Accès_Serveurs_Bancaires,2026-04-25,Incohérence département/groupe
+81,Kyle Clark,Juridique,Accès_Serveurs_Bancaires,2026-02-23,Incohérence département/groupe
+86,Taylor Bennett,Opérations,Admins_Domaine,2026-02-25,Incohérence département/groupe
+87,Jordan Fletcher,Opérations,Admins_Serveurs,2026-03-22,Incohérence département/groupe
+90,Daniel Wiley,Marketing,Admins_Domaine,2026-06-07,Incohérence département/groupe
+94,Jacqueline Duarte,Finance,Admins_Domaine,2026-04-02,Incohérence département/groupe
+99,Ellen Johnson,Juridique,Accès_Serveurs_Bancaires,2026-03-19,Incohérence département/groupe
+104,Mary Barnes,Finance,Accès_Serveurs_Bancaires,2026-07-19,Incohérence département/groupe
+108,Brenda Goodman DDS,RH,Admins_Serveurs,2026-06-24,Incohérence département/groupe
+113,Tracy Mcdaniel,RH,Admins_Serveurs,2026-05-11,Incohérence département/groupe
+114,Curtis Walter,Opérations,Admins_Domaine,2026-03-15,Incohérence département/groupe
+115,Ashley Tapia,RH,Admins_Serveurs,2026-03-15,Incohérence département/groupe
+123,Rachel Owens,Juridique,Admins_Serveurs,2026-05-25,Incohérence département/groupe
+124,Jamie Hudson,Opérations,Admins_Domaine,2026-04-15,Incohérence département/groupe
+126,Heidi Brown,RH,Admins_Domaine,2026-06-23,Incohérence département/groupe
+127,Rebecca Nelson,Opérations,Admins_Serveurs,2026-06-29,Incohérence département/groupe
+128,Robert Rodriguez,Juridique,Admins_Domaine,2026-05-20,Incohérence département/groupe
+132,Lindsay Allen,Marketing,Admins_Serveurs,2026-03-02,Incohérence département/groupe
+139,Kenneth Kim,Sécurité,Admins_Serveurs,2026-04-25,Incohérence département/groupe
+140,Michael Johnson,Opérations,Admins_Domaine,2026-02-20,Incohérence département/groupe
+148,Charles Ward,Finance,Admins_Domaine,2026-03-24,Incohérence département/groupe
+149,Martha Cruz,Opérations,Admins_Domaine,2026-05-25,Incohérence département/groupe
+151,James Fisher,Sécurité,Admins_Serveurs,2026-08-01,Incohérence département/groupe
+154,Brian Collier,Finance,Admins_Serveurs,2026-03-03,Incohérence département/groupe
+156,Michael Wood,Finance,Accès_Serveurs_Bancaires,2026-03-02,Incohérence département/groupe
+158,Kenneth Thomas,Juridique,Accès_Serveurs_Bancaires,2026-05-21,Incohérence département/groupe
+164,Perry Mcdonald,Juridique,Admins_Domaine,2026-03-25,Incohérence département/groupe
+165,Harold Daugherty,Opérations,Admins_Domaine,2026-02-18,Incohérence département/groupe
+167,Sarah Rodriguez,Juridique,Accès_Serveurs_Bancaires,2026-03-04,Incohérence département/groupe
+170,Breanna King,Opérations,Admins_Serveurs,2026-08-02,Incohérence département/groupe
+174,Christopher Bailey,RH,Admins_Domaine,2026-03-15,Incohérence département/groupe
+176,Andrew Martin,RH,Admins_Serveurs,2026-07-01,Incohérence département/groupe
+183,Patrick Mendez,Marketing,Admins_Serveurs,2026-03-16,Incohérence département/groupe
+187,Steven Walls,RH,Accès_Serveurs_Bancaires,2026-06-26,Incohérence département/groupe
+196,Ashley Kidd,RH,Accès_Serveurs_Bancaires,2026-03-15,Incohérence département/groupe
