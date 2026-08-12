@@ -16,17 +16,17 @@ class RiskScorer:
 
     def calculer(self, df_ad: pd.DataFrame, df_qualys: pd.DataFrame,
                  inactifs: pd.DataFrame, incoherences: pd.DataFrame) -> pd.DataFrame:
-        """Retourne un DataFrame avec une colonne 'score_risque' et 'niveau_risque' par utilisateur."""
 
         poids = self.config.ponderations_risque
         groupes_a_privileges = list(self.config.groupes_sensibles.keys())
+        score_max_possible = sum(poids.values())  # calcul dynamique du max théorique
 
         fusion = df_ad.merge(df_qualys, on="id", how="left")
 
         ids_inactifs = set(inactifs["id"])
         ids_incoherents = set(incoherences["id"])
 
-        def calculer_score(ligne):
+        def calculer_score_brut(ligne):
             score = 0
             if ligne["id"] in ids_inactifs:
                 score += poids["inactif"]
@@ -40,14 +40,15 @@ class RiskScorer:
                 score += poids["vuln_critique"]
             if ligne["patch_disponible"] == False:
                 score += poids["sans_patch"]
-            return min(score, 10)  # on plafonne à 10
+            return score
 
-        fusion["score_risque"] = fusion.apply(calculer_score, axis=1)
+        fusion["score_brut"] = fusion.apply(calculer_score_brut, axis=1)
+        # Normalisation sur 10, arrondi à 1 décimale pour garder de la granularité
+        fusion["score_risque"] = round((fusion["score_brut"] / score_max_possible) * 10, 1)
         fusion["niveau_risque"] = fusion["score_risque"].apply(self._niveau_texte)
 
         logger.info(f"Scores calculés pour {len(fusion)} utilisateurs.")
         return fusion.sort_values("score_risque", ascending=False)
-
     @staticmethod
     def _niveau_texte(score: int) -> str:
         if score >= 8:
