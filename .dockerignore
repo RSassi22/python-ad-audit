@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.git/
+data/raw/*.csv
+data/processed/*.csv
+outputs/*.pdf
+outputs/*.png

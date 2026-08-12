@@ -82,6 +82,6 @@ st.bar_chart(score_par_dept)
 st.subheader(f"Détail des comptes ({len(donnees_filtrees)} résultats)")
 st.dataframe(
     donnees_filtrees[["nom", "departement", "groupe_ad", "score_risque", "niveau_risque"]],
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
