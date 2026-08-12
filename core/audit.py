@@ -30,6 +30,7 @@ class AuditEngine:
             if groupe in self.config.groupes_sensibles:
                 return dept not in self.config.groupes_sensibles[groupe]
             return False
+    
 
         df = df.copy()
         df["incoherent"] = df.apply(est_incoherent, axis=1)
@@ -37,6 +38,26 @@ class AuditEngine:
         incoherences["type_alerte"] = "Incohérence département/groupe"
         logger.info(f"{len(incoherences)} incohérences détectées.")
         return incoherences
+    
+    def detecter_risques_croises(self, df_ad: pd.DataFrame, df_qualys: pd.DataFrame) -> pd.DataFrame:
+        """Croise AD et Qualys : repère les comptes à privilèges élevés
+        sur une machine avec une vulnérabilité Critique ou Élevée non patchée.
+        """
+        groupes_a_privileges = list(self.config.groupes_sensibles.keys())
+
+        # Jointure sur la colonne "id" — équivalent d'un JOIN en SQL
+        fusion = df_ad.merge(df_qualys, on="id", how="left")
+
+        condition = (
+            fusion["groupe_ad"].isin(groupes_a_privileges)
+            & fusion["severite"].isin(["Critique", "Élevée"])
+            & (fusion["patch_disponible"] == False)
+        )
+
+        risques = fusion[condition].copy()
+        risques["type_alerte"] = "Compte à privilèges + machine vulnérable non patchée"
+        logger.info(f"{len(risques)} risques croisés AD/Qualys détectés.")
+        return risques
 
     def generer_rapport(self, df: pd.DataFrame) -> pd.DataFrame:
         """Exécute toutes les règles et fusionne les résultats en un seul rapport."""
