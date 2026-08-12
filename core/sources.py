@@ -19,7 +19,7 @@ class SourceAD:
     def generer(self) -> pd.DataFrame:
         """Génère un jeu de données AD fictif selon les paramètres de la config."""
         logger.info(f"Génération de {self.config.nb_utilisateurs} utilisateurs fictifs...")
-
+        
         utilisateurs = []
         for i in range(self.config.nb_utilisateurs):
             utilisateurs.append({
@@ -31,6 +31,7 @@ class SourceAD:
             })
 
         df = pd.DataFrame(utilisateurs)
+        df["derniere_connexion"] = pd.to_datetime(df["derniere_connexion"])  #  tu utilises les données juste après generer() ou après un charger() depuis un CSV
         logger.info(f"{len(df)} utilisateurs générés avec succès.")
         return df
 

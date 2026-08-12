@@ -23,12 +23,21 @@ class Config:
         "Accès_Serveurs_Bancaires": ["IT", "Sécurité", "Opérations"],
         "Admins_Serveurs": ["IT"],
     })
+
+    ponderations_risque: Dict[str, int] = field(default_factory=lambda: {
+        "inactif": 2,
+        "incoherence": 3,
+        "privilege": 2,
+        "vuln_elevee": 3,
+        "vuln_critique": 5,
+        "sans_patch": 2,
+    })
     
     chemin_export_ad: str = "data/raw/export_ad_fictif.csv"
     chemin_rapport: str = "data/processed/alertes_securite.csv"
 
 
-    
+
 
     severites_cve: List[str] = field(default_factory=lambda: ["Faible", "Moyenne", "Élevée", "Critique"])
     proba_vulnerabilite: float = 0.35  # 35% de chances qu'une machine ait une vulnérabilité
