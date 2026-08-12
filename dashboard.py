@@ -1,0 +1,87 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent))
+
+import streamlit as st
+import pandas as pd
+
+from core.config import Config
+from core.sources import SourceAD, SourceQualys
+from core.audit import AuditEngine
+from core.scoring import RiskScorer
+
+# --- Configuration de la page ---
+st.set_page_config(page_title="Audit AD - Dashboard", layout="wide")
+
+# --- Cache : évite de régénérer les données à chaque interaction utilisateur ---
+@st.cache_data
+def charger_donnees():
+    config = Config()
+
+    source_ad = SourceAD(config)
+    df_ad = source_ad.generer()
+
+    source_qualys = SourceQualys(config)
+    df_qualys = source_qualys.generer(df_ad["id"].tolist())
+
+    moteur = AuditEngine(config)
+    inactifs = moteur.detecter_inactifs(df_ad)
+    incoherences = moteur.detecter_incoherences(df_ad)
+
+    scorer = RiskScorer(config)
+    resultats = scorer.calculer(df_ad, df_qualys, inactifs, incoherences)
+
+    return resultats
+
+resultats = charger_donnees()
+
+# --- Titre ---
+st.title("🔒 Dashboard d'audit Active Directory")
+st.caption("Données simulées à des fins de démonstration (Faker + logique d'audit personnalisée)")
+
+# --- Indicateurs clés (KPI) en haut ---
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Comptes analysés", len(resultats))
+col2.metric("Risque critique", len(resultats[resultats["niveau_risque"] == "Critique"]))
+col3.metric("Risque élevé", len(resultats[resultats["niveau_risque"] == "Élevé"]))
+col4.metric("Score moyen", f"{resultats['score_risque'].mean():.1f}/10")
+
+st.divider()
+
+# --- Filtres dans la barre latérale ---
+st.sidebar.header("Filtres")
+
+departements = ["Tous"] + sorted(resultats["departement"].unique().tolist())
+dept_choisi = st.sidebar.selectbox("Département", departements)
+
+niveaux = ["Tous"] + sorted(resultats["niveau_risque"].unique().tolist())
+niveau_choisi = st.sidebar.selectbox("Niveau de risque", niveaux)
+
+score_min = st.sidebar.slider("Score minimum", 0.0, 10.0, 0.0, 0.5)
+
+# --- Application des filtres ---
+donnees_filtrees = resultats.copy()
+if dept_choisi != "Tous":
+    donnees_filtrees = donnees_filtrees[donnees_filtrees["departement"] == dept_choisi]
+if niveau_choisi != "Tous":
+    donnees_filtrees = donnees_filtrees[donnees_filtrees["niveau_risque"] == niveau_choisi]
+donnees_filtrees = donnees_filtrees[donnees_filtrees["score_risque"] >= score_min]
+
+# --- Graphique : distribution des niveaux de risque ---
+st.subheader("Répartition par niveau de risque")
+repartition = donnees_filtrees["niveau_risque"].value_counts()
+st.bar_chart(repartition)
+
+# --- Graphique : score moyen par département ---
+st.subheader("Score de risque moyen par département")
+score_par_dept = donnees_filtrees.groupby("departement")["score_risque"].mean().sort_values(ascending=False)
+st.bar_chart(score_par_dept)
+
+# --- Tableau détaillé ---
+st.subheader(f"Détail des comptes ({len(donnees_filtrees)} résultats)")
+st.dataframe(
+    donnees_filtrees[["nom", "departement", "groupe_ad", "score_risque", "niveau_risque"]],
+    use_container_width=True,
+    hide_index=True,
+)
