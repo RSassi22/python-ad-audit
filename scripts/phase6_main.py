@@ -17,7 +17,7 @@ logging.basicConfig(
 def main():
     config = Config()
 
-    # Génération AD
+    # Génération AD active dir 
     source_ad = SourceAD(config)
     df_ad = source_ad.generer()
     source_ad.sauvegarder(df_ad)
@@ -38,4 +38,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
