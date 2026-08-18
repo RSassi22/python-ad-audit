@@ -42,4 +42,7 @@ def main():
     print(f"\nRapport complet sauvegardé : {chemin_sortie}")
 
 if __name__ == "__main__":
-    main()
+    main() 
+
+
+    # Qualiys threats 
