@@ -9,7 +9,7 @@ from core.config import Config
 from core.sources import SourceAD
 from core.audit import AuditEngine
 
-# Configuration du logging : affiche l'heure, le niveau, et le message
+# Configuration du logging : affiche l'heure, le niveau, et le message 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -33,3 +33,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+    #  phase 5 
