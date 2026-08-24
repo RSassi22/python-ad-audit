@@ -91,7 +91,21 @@ def render_wallix_dashboard() -> None:
     # ---------------------------------------------------------------- Distribution des scores
     st.markdown("**Distribution des scores d'anomalie**")
     st.caption("Plus le score est bas, plus la session est jugée suspecte par le modèle.")
-    chart_data = df[["anomaly_score"]].copy()
-    st.bar_chart(
-        chart_data["anomaly_score"].value_counts(bins=30).sort_index()
-    )
+
+    # IMPORTANT : on n'utilise PAS value_counts(bins=...) ici.
+    # Cette méthode retourne un index de type pandas.Interval, que Streamlit
+    # ne sait pas afficher proprement sur l'axe d'un bar_chart (il l'affiche
+    # comme un objet brut {"left": ..., "right": ...}, illisible).
+    # À la place : on calcule l'histogramme nous-mêmes avec numpy, et on
+    # utilise le CENTRE de chaque tranche (un simple float) comme label.
+    import numpy as np
+
+    counts, bin_edges = np.histogram(df["anomaly_score"], bins=30)
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
+    histogram_df = pd.DataFrame({
+        "score": [round(c, 3) for c in bin_centers],
+        "nombre_de_sessions": counts,
+    }).set_index("score")
+
+    st.bar_chart(histogram_df)
