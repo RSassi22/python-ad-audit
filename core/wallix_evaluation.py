@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Phase 5 — Évaluation du modèle Isolation Forest.
+Phase 5 (interne UEBA = scripts/phase12_wallix_evaluation_main.py) —
+Évaluation du modèle Isolation Forest.
 
 C'est ICI, et seulement ici, qu'on a le droit de comparer les prédictions
 du modèle (predicted_anomaly) aux vraies anomalies injectées (is_anomaly).
 Le modèle, lui, n'a jamais vu is_anomaly pendant l'entraînement (Phase 4).
+
+Entrée : le DataFrame scoré par core/wallix_model.py. Sortie : des
+métriques (dict/DataFrame) affichées en console, et deux images PNG
+enregistrées dans docs/screenshots/ (utilisées ensuite dans le README).
 """
 import logging
 from pathlib import Path

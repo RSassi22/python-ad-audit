@@ -1,6 +1,10 @@
+# Phase 2 — Première génération de données AD fictives "en dur" dans un
+# script, sans encore passer par core/. C'est la version pédagogique de ce
+# que fait ensuite core/sources.py::SourceAD.generer() (mêmes idées, mais
+# paramètres codés ici plutôt que centralisés dans une Config réutilisable).
 from faker import Faker
 import pandas as pd
-import random 
+import random
 
 
 # Faker génère des données réalistes (noms, dates, etc.) automatiquement

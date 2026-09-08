@@ -1,3 +1,7 @@
+# Phase 4 — Trois graphiques matplotlib à partir du rapport d'alertes
+# (sortie de phase3_audit.py). Script autonome, non relié à core/ : les
+# graphiques équivalents dans le dashboard (dashboard.py) sont recalculés en
+# direct avec st.bar_chart plutôt que sauvegardés en PNG.
 import pandas as pd
 import matplotlib.pyplot as plt
 

@@ -9,6 +9,18 @@ Logique UEBA : chaque entité (utilisateur ou compte de service) a un profil
 comportemental propre (assets habituels, heure de connexion typique).
 Une anomalie casse VOLONTAIREMENT un seul axe de ce profil (heure, asset,
 durée, ou commande sensible) pour rester interprétable en Phase 5 (évaluation).
+
+Point d'entrée du module UEBA (voir aussi wallix_features.py, wallix_model.py,
+wallix_evaluation.py, wallix_dashboard.py) : ce fichier ne dépend d'aucun
+autre module de core/, il crée les données brutes que tout le reste du
+module UEBA consomme. Appelé par scripts/phase9_wallix_main.py.
+
+Remarque sur la numérotation : les commentaires "Phase 1/3/4/5" dans les
+fichiers wallix_*.py désignent l'ordre INTERNE au module UEBA (génération ->
+features -> modèle -> évaluation), pas les scripts scripts/phaseN_*.py
+du projet global. Correspondance : Phase "génération" = phase9_wallix_main.py,
+Phase 3 (features) = phase10, Phase 4 (modèle) = phase11, Phase 5
+(évaluation) = phase12.
 """
 import logging
 from dataclasses import dataclass, field
@@ -45,6 +57,12 @@ class WallixSimConfig:
 # ---------------------------------------------------------------------- #
 @dataclass
 class EntityProfile:
+    """Décrit le comportement "normal" d'un utilisateur/compte de service.
+    hour_loc/hour_scale = moyenne/écart-type de son heure de connexion
+    habituelle (loi normale) ; habitual_assets/asset_weights = les machines
+    qu'il touche d'habitude et à quelle fréquence relative. C'est CE profil
+    qui sert de référence pour juger si une session est "anormale" plus tard.
+    """
     username: str
     role: str
     habitual_assets: List[str]
@@ -55,6 +73,9 @@ class EntityProfile:
 
 
 def default_profiles() -> Dict[str, EntityProfile]:
+    # 4 profils fixes et volontairement différents (dev, DBA, admin réseau,
+    # compte de service qui tourne la nuit) pour que les anomalies injectées
+    # plus bas restent visuellement/statistiquement distinctes du profil normal.
     return {
         "jean_dev": EntityProfile(
             username="jean_dev", role="Developer",
@@ -197,6 +218,9 @@ class WallixSessionGenerator:
         }
 
     def generate(self) -> pd.DataFrame:
+        """Point d'entrée public : combine baseline (comportement normal) et
+        anomalies injectées en un seul DataFrame mélangé. C'est cette méthode
+        qu'appelle scripts/phase9_wallix_main.py."""
         n_baseline = self.config.n_baseline_sessions
         n_anomalies = int(round(
             n_baseline * self.config.anomaly_rate / (1 - self.config.anomaly_rate)

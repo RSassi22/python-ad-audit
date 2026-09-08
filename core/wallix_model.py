@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Phase 4 — Entraînement du modèle Isolation Forest sur les features Wallix.
+Phase 4 (interne UEBA = scripts/phase11_wallix_model_main.py) — Entraînement
+du modèle Isolation Forest sur les features Wallix.
 
 Le modèle est NON-SUPERVISÉ : il ne voit jamais is_anomaly / anomaly_type
 pendant l'entraînement. Ces colonnes ne servent qu'après coup, en Phase 5,
 pour évaluer si le modèle a bien retrouvé les anomalies qu'on avait injectées.
+
+Entrée : le DataFrame de features produit par core/wallix_features.py.
+Sortie (score_sessions) : le DataFrame enrichi d'un score d'anomalie,
+consommé par core/wallix_evaluation.py, core/wallix_dashboard.py et
+scripts/phase13_build_datawarehouse_main.py.
 """
 import logging
 import numpy as np

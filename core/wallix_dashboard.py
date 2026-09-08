@@ -2,9 +2,20 @@
 """
 Phase 6 — Vue Streamlit "Sessions à risque" pour le module Wallix.
 
+Attention à la numérotation : ce "Phase 6" correspond à l'étape d'intégration
+du dashboard UEBA dans l'historique du projet (voir les commits git "Phase 6:
+intégration de la vue Sessions Wallix"), PAS à scripts/phase6_main.py (qui
+concerne l'export CSV des scores de risque AD, un sujet totalement différent).
+Ce fichier n'est appelé par aucun script scripts/phaseN_*.py : il est importé
+directement par dashboard.py.
+
 Ce module expose UNE seule fonction, render_wallix_dashboard(), pensée
 pour être appelée depuis dashboard.py sans dépendre de sa structure interne
 (onglets, sidebar...). Il suffit de l'importer et de l'appeler où tu veux.
+
+Entrée : lit directement le CSV data/wallix_sessions_scored.csv (sortie de
+core/wallix_model.py, généré par scripts/phase11_wallix_model_main.py) —
+contrairement aux autres onglets, il ne reçoit pas de DataFrame en argument.
 """
 from pathlib import Path
 

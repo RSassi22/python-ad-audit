@@ -1,3 +1,7 @@
+# Phase 3 — Première version des règles de détection (inactifs +
+# incohérences), écrites directement dans un script. C'est la version
+# pédagogique de ce que fait ensuite core/audit.py::AuditEngine (mêmes
+# règles, mais réutilisables/testables une fois déplacées dans core/).
 import pandas as pd
 from datetime import datetime, timedelta
 

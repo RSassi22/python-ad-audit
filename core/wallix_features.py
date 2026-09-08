@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Feature engineering pour la détection d'anomalies (Phase 3).
+Feature engineering pour la détection d'anomalies (Phase 3 interne au module
+UEBA = scripts/phase10_wallix_features_main.py au niveau du projet).
+
+Entrée : le DataFrame brut produit par wallix_sources.py (via le CSV
+data/wallix_sessions.csv). Sortie : le même DataFrame enrichi de colonnes
+numériques, consommé ensuite par core/wallix_model.py pour entraîner le
+modèle Isolation Forest.
 
 Objectif : transformer les logs bruts de sessions Wallix en variables
 numériques exploitables par Isolation Forest, en respectant la logique

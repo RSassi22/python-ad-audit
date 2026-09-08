@@ -1,3 +1,9 @@
+# Point d'entrée de l'application Streamlit (lancée via `streamlit run dashboard.py`).
+# C'est la "vitrine" du projet : il réutilise telles quelles les briques de
+# core/ (les mêmes que scripts/phase7_main.py) pour l'onglet Audit AD, et
+# délègue l'onglet Wallix à core/wallix_dashboard.py. Aucune logique de
+# détection/scoring n'est réécrite ici : ce fichier ne fait qu'orchestrer
+# l'affichage (KPIs, filtres, graphiques, tableau).
 import sys
 from pathlib import Path
 
@@ -16,8 +22,13 @@ from core.wallix_dashboard import render_wallix_dashboard
 st.set_page_config(page_title="Audit AD - Dashboard", layout="wide")
 
 # --- Cache : évite de régénérer les données à chaque interaction utilisateur ---
+# @st.cache_data mémorise le résultat de la fonction : Streamlit relance TOUT
+# le script à chaque clic (changement de filtre, etc.), donc sans ce cache,
+# on regénérerait des données AD/Qualys aléatoires différentes à chaque clic.
 @st.cache_data
 def charger_donnees():
+    # Reproduit exactement le même enchaînement que scripts/phase7_main.py :
+    # génération AD -> génération Qualys -> détection -> scoring.
     config = Config()
 
     source_ad = SourceAD(config)
@@ -39,6 +50,8 @@ def charger_donnees():
 st.title("🔒 Dashboard Sécurité — Active Directory & Sessions Privilégiées")
 st.caption("Données simulées à des fins de démonstration (Faker + logique d'audit personnalisée)")
 
+# st.tabs crée deux onglets cliquables ; tout ce qui est écrit dans un bloc
+# "with tab_xxx:" ne s'affiche que quand cet onglet est sélectionné.
 tab_ad, tab_wallix = st.tabs(["🔍 Audit Active Directory", "🛡️ Sessions Wallix à risque"])
 
 # ==========================================================================
@@ -97,4 +110,6 @@ with tab_ad:
 # ONGLET 2 : Sessions Wallix à risque (nouveau module UEBA)
 # ==========================================================================
 with tab_wallix:
+    # Toute la logique d'affichage (KPIs, filtres, tableau, histogramme)
+    # vit dans core/wallix_dashboard.py ; on se contente de l'appeler ici.
     render_wallix_dashboard()

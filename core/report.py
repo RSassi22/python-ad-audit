@@ -1,3 +1,9 @@
+# Dernier maillon du pipeline "Audit AD" : prend le DataFrame `resultats`
+# produit par core/scoring.py (score de risque par utilisateur) et le met en
+# forme dans un PDF, via la librairie ReportLab. Appelé notamment par
+# scripts/phase8_main.py. Le dashboard Streamlit (dashboard.py) affiche les
+# mêmes données mais dans le navigateur, à la place du PDF — les deux lisent
+# le même DataFrame `resultats`, juste avec un rendu différent.
 import logging
 from pathlib import Path
 from datetime import datetime
@@ -19,21 +25,27 @@ class ReportGenerator:
 
     def __init__(self, config: Config):
         self.config = config
+        # Feuille de styles par défaut de ReportLab (Title, Heading2, Normal...)
+        # réutilisée et personnalisée dans les méthodes _section_*.
         self.styles = getSampleStyleSheet()
 
     def generer(self, resultats: pd.DataFrame, chemin_sortie: str = "outputs/rapport_audit.pdf") -> None:
         chemin = Path(chemin_sortie)
         chemin.parent.mkdir(parents=True, exist_ok=True)
 
+        # SimpleDocTemplate : "page" ReportLab dans laquelle on empile des
+        # éléments (titres, paragraphes, tableaux...) du haut vers le bas.
         doc = SimpleDocTemplate(str(chemin), pagesize=A4,
                                  topMargin=2*cm, bottomMargin=2*cm)
         elements = []
 
+        # Chaque _section_* renvoie une liste d'éléments ReportLab ; on les
+        # concatène dans l'ordre où elles doivent apparaître dans le PDF.
         elements += self._section_titre()
         elements += self._section_resume(resultats)
         elements += self._section_top_risques(resultats)
 
-        doc.build(elements)
+        doc.build(elements)  # écrit réellement le fichier PDF sur disque
         logger.info(f"Rapport PDF généré : {chemin}")
 
     def _section_titre(self) -> list:
@@ -71,6 +83,9 @@ class ReportGenerator:
         ]
 
     def _section_top_risques(self, resultats: pd.DataFrame) -> list:
+        # `resultats` est déjà trié par score décroissant (voir
+        # RiskScorer.calculer dans core/scoring.py), donc head(10) donne
+        # directement les 10 comptes les plus à risque.
         top = resultats.head(10)
 
         donnees_tableau = [["Nom", "Département", "Groupe AD", "Score", "Niveau"]]

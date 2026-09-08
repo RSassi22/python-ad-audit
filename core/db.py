@@ -20,6 +20,12 @@ NOTE : les identifiants utilisateurs AD (Faker) et Wallix (profils fixes)
 ne se recoupent pas naturellement dans les données actuelles — dim_user les
 stocke côte à côte avec une colonne `source` plutôt que de prétendre à une
 correspondance qui n'existe pas.
+
+Dernier maillon du projet : ce module est appelé uniquement par
+scripts/phase13_build_datawarehouse_main.py, qui relance lui-même tout le
+pipeline Audit AD (SourceAD/SourceQualys/AuditEngine/RiskScorer) et relit le
+CSV Wallix déjà scoré, pour les charger tous les deux dans PostgreSQL. C'est
+cette base qui alimente ensuite le fichier Power BI (dashboard_powerbi_ueba.pbix).
 """
 import logging
 import os

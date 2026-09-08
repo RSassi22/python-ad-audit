@@ -1,3 +1,8 @@
+# Phase 1 — Script d'entraînement autonome, le tout premier du projet.
+# Il ne dépend d'aucun module de core/ et n'est appelé par rien d'autre :
+# c'est un exercice isolé pour manipuler des listes de dictionnaires Python
+# avant d'introduire pandas/Faker dans les phases suivantes (phase2_export_ad.py).
+#
 # On représente chaque utilisateur AD par un dictionnaire :
 # clé = nom du champ (comme une colonne AD), valeur = donnée réelle
 utilisateurs = [

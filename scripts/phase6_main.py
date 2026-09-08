@@ -1,3 +1,6 @@
+# Phase 6 — Ajoute la source Qualys et la détection croisée (privilèges +
+# vulnérabilité non patchée) au pipeline de la Phase 5. Voir
+# scripts/phase5_main.py pour le détail du sys.path.append ci-dessous.
 import logging
 import sys
 from pathlib import Path
