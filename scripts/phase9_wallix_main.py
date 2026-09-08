@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Phase 9 — Génération des sessions Wallix simulées (baseline + anomalies injectées).
+Premier maillon de la chaîne UEBA : phase9 (génère) -> phase10 (features) ->
+phase11 (entraîne le modèle + score) -> phase12 (évalue) -> phase13 (charge
+tout dans le data warehouse). Chaque script relit le CSV produit par le précédent.
 
 Usage (depuis la racine du projet) :
     python scripts/phase9_wallix_main.py

@@ -1,3 +1,7 @@
+# Phase 8 — Dernière étape du pipeline "Audit AD classique" : ajoute la
+# génération du rapport PDF (core/report.py) au-dessus du scoring de la
+# Phase 7. C'est le script à lancer pour obtenir outputs/rapport_audit.pdf
+# (voir aussi le README, section "Générer le rapport PDF").
 import logging
 import sys
 from pathlib import Path

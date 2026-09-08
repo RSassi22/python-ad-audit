@@ -1,3 +1,8 @@
+# Tests unitaires pour core/audit.py::AuditEngine. Lancés en local via
+# `pytest tests/ -v`, et automatiquement à chaque push/PR par la CI
+# GitHub Actions (.github/workflows/tests.yml). On construit ici de petits
+# DataFrames "à la main" (2-3 lignes) plutôt que d'utiliser les données
+# générées par Faker, pour que le résultat attendu soit connu à l'avance.
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))

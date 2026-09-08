@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Phase 13 — Construction du data warehouse SQLite (star schema / constellation)
-à partir des deux modules existants (Audit AD + Wallix).
+Phase 13 — Construction du data warehouse PostgreSQL (star schema / constellation)
+à partir des deux modules existants (Audit AD + Wallix). C'est le seul script
+qui relance ENTIÈREMENT le pipeline Audit AD en mémoire (build_ad_results,
+ci-dessous) plutôt que de relire un CSV déjà généré — il ne dépend donc pas
+d'avoir lancé phase7/phase8 au préalable, seulement phase9 à phase11 pour
+avoir data/wallix_sessions_scored.csv. Une fois cette base PostgreSQL remplie,
+c'est elle qui alimente le fichier Power BI dashboard_powerbi_ueba.pbix.
 
 Usage (depuis la racine du projet) :
     python scripts/phase13_build_datawarehouse_main.py
@@ -25,7 +30,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 
 def build_ad_results() -> pd.DataFrame:
     """Reproduit exactement le pipeline de dashboard.py (charger_donnees())
-    pour obtenir le DataFrame `resultats` de l'audit AD."""
+    pour obtenir le DataFrame `resultats` de l'audit AD.
+    Note : comme dashboard.py, les données AD/Qualys sont régénérées
+    aléatoirement à chaque exécution (pas relues depuis un CSV figé) —
+    donc les scores chargés en base peuvent différer d'un run à l'autre."""
     config = Config()
 
     source_ad = SourceAD(config)

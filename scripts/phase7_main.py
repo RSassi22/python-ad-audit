@@ -1,3 +1,7 @@
+# Phase 7 — Ajoute le calcul du score de risque (core/scoring.py) au-dessus
+# de la détection de la Phase 6. C'est cet enchaînement (sources -> audit ->
+# scoring) que réutilise ensuite dashboard.py::charger_donnees() presque à
+# l'identique.
 import logging
 import sys
 from pathlib import Path
