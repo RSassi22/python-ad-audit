@@ -15,5 +15,9 @@ COPY . .
 # Port par défaut utilisé par Streamlit
 EXPOSE 8501
 
-# Commande lancée au démarrage du conteneur
+# Commande lancée au démarrage du conteneur.
+# Note : seul dashboard.py est lancé ici (donc uniquement l'onglet Audit AD
+# + l'onglet Wallix, tous deux régénérés/lus à la volée). Les scripts
+# scripts/phase9-13 (UEBA + data warehouse PostgreSQL) ne tournent pas
+# automatiquement dans ce conteneur : ils s'exécutent à part, en local.
 CMD ["streamlit", "run", "dashboard.py", "--server.address=0.0.0.0"]

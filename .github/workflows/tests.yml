@@ -1,3 +1,7 @@
+# Pipeline CI/CD (GitHub Actions) : à chaque push ou pull request vers main,
+# GitHub lance automatiquement les tests du dossier tests/ (test_audit.py,
+# test_scoring.py) sur une machine Ubuntu neuve, pour vérifier que le code
+# métier de core/ fonctionne toujours avant d'accepter un changement.
 name: Tests
 
 on:

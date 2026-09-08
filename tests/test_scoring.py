@@ -1,3 +1,7 @@
+# Tests unitaires pour core/scoring.py::RiskScorer. Comme test_audit.py, on
+# fabrique des DataFrames minimalistes à la main pour vérifier deux
+# propriétés attendues du score : (1) cumuler des facteurs de risque doit
+# augmenter le score, (2) le score ne doit jamais dépasser la borne haute (10).
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
