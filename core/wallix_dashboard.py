@@ -76,6 +76,40 @@ def render_wallix_dashboard() -> None:
     if show_only_flagged:
         df_filtered = df_filtered[df_filtered["predicted_anomaly"] == 1]
 
+    # ---------------------------------------------------------------- Carte (Phase 15)
+    # Une session Wallix est maintenant rattachée à un pays (core/wallix_geo.py +
+    # core/wallix_sources.py), avec des coordonnées lat/lon fixes par pays.
+    # st.map() sait afficher un point par ligne d'un DataFrame à partir de
+    # colonnes de coordonnées ; le paramètre color="..." accepte le NOM d'une
+    # colonne contenant un code couleur par ligne, ce qui permet de distinguer
+    # visuellement les sessions normales des sessions anormales sur la carte.
+    if "country_lat" in df.columns and "country_lon" in df.columns:
+        st.markdown("**Carte des sessions par pays de connexion**")
+        st.caption(
+            "🔴 Rouge = session réellement anormale (is_anomaly=1, dont les connexions "
+            "depuis un pays inhabituel) — ⚫ Gris foncé = session normale. "
+            "Reprend la palette utilisée pour les graphiques d'évaluation (core/wallix_evaluation.py)."
+        )
+
+        # On repart de df filtré seulement par utilisateur (pas par la case
+        # "uniquement les sessions signalées") : si on gardait ce filtre, la
+        # carte ne montrerait plus jamais de points normaux quand la case est
+        # cochée (cochée par défaut), ce qui empêcherait justement la
+        # comparaison visuelle normal/anormal qu'on cherche à montrer ici.
+        df_map_source = df if selected_user == "Tous" else df[df["requestor_user"] == selected_user]
+
+        df_map = df_map_source[["country_lat", "country_lon", "is_anomaly"]].copy()
+        # map() associe à chaque valeur de is_anomaly (0 ou 1) le code couleur
+        # correspondant, comme un dictionnaire "si 1 alors rouge, si 0 alors gris".
+        df_map["color"] = df_map["is_anomaly"].map({1: "#ED1C37", 0: "#333333"})
+
+        # Remarque : plusieurs sessions peuvent tomber exactement sur les mêmes
+        # coordonnées (on simule un pays entier, pas une ville précise — voir
+        # core/wallix_geo.py). C'est normal et attendu à ce niveau de détail :
+        # les points se superposent alors sur la carte au lieu de se chevaucher
+        # à quelques mètres près.
+        st.map(df_map, latitude="country_lat", longitude="country_lon", color="color", size=80000)
+
     # ---------------------------------------------------------------- Tableau
     df_display = df_filtered.sort_values("anomaly_score").copy()
     df_display["Suspicion"] = df_display["predicted_anomaly"].map(

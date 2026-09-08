@@ -1,11 +1,13 @@
 model,anomaly_type,recall,precision,f1_score
-Isolation Forest,GLOBAL,0.5421686746987951,0.5357142857142857,0.5389221556886228
-Isolation Forest,unusual_asset,0.19047619047619047,,
-Isolation Forest,unusual_hour,0.25,,
-Isolation Forest,unusual_duration,0.7894736842105263,,
-Isolation Forest,sensitive_command,0.8148148148148148,,
-LOF,GLOBAL,0.3493975903614458,0.34523809523809523,0.3473053892215569
-LOF,sensitive_command,0.037037037037037035,,
-LOF,unusual_asset,0.38095238095238093,,
-LOF,unusual_duration,0.5263157894736842,,
-LOF,unusual_hour,0.625,,
+Isolation Forest,GLOBAL,0.4939759036144578,0.4880952380952381,0.49101796407185627
+Isolation Forest,unusual_hour,0.15,,
+Isolation Forest,unusual_asset,0.23529411764705882,,
+Isolation Forest,unusual_country,0.6,,
+Isolation Forest,unusual_duration,0.8333333333333334,,
+Isolation Forest,sensitive_command,0.8571428571428571,,
+LOF,GLOBAL,0.46987951807228917,0.4642857142857143,0.46706586826347307
+LOF,sensitive_command,0.0,,
+LOF,unusual_country,0.45,,
+LOF,unusual_asset,0.47058823529411764,,
+LOF,unusual_hour,0.65,,
+LOF,unusual_duration,0.75,,

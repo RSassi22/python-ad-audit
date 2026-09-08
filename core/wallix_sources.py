@@ -26,6 +26,9 @@ import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import Dict, List
+# ------------------------------geolocalistaion ---------------------------------------- #
+
+from .wallix_geo import COUNTRY_COORDS, COMMON_COUNTRIES, UNUSUAL_COUNTRIES
 
 import numpy as np
 import pandas as pd
@@ -63,6 +66,7 @@ class EntityProfile:
     qu'il touche d'habitude et à quelle fréquence relative. C'est CE profil
     qui sert de référence pour juger si une session est "anormale" plus tard.
     """
+    """(...) docstring inchangé (...)"""
     username: str
     role: str
     habitual_assets: List[str]
@@ -70,7 +74,11 @@ class EntityProfile:
     hour_loc: float
     hour_scale: float
     protocol: str = "SSH"
-
+    # Pays depuis lequel ce profil se connecte habituellement (Phase 15).
+    # On reste simple : UN SEUL pays habituel par profil (pas une liste
+    # pondérée comme pour les assets), suffisant pour détecter l'anomalie
+    # "connexion depuis un pays inhabituel pour CET utilisateur".
+    habitual_country: str = "Tunisia"
 
 def default_profiles() -> Dict[str, EntityProfile]:
     # 4 profils fixes et volontairement différents (dev, DBA, admin réseau,
@@ -147,8 +155,7 @@ class WallixSessionGenerator:
     def inject_anomalies(self, n_anomalies: int) -> pd.DataFrame:
         rows: List[dict] = []
         usernames = list(self.profiles.keys())
-        anomaly_types = ["unusual_hour", "unusual_asset", "unusual_duration", "sensitive_command"]
-
+        anomaly_types = ["unusual_hour", "unusual_asset", "unusual_duration", "sensitive_command", "unusual_country"]
         for _ in range(n_anomalies):
             username = np.random.choice(usernames)
             profile = self.profiles[username]
@@ -176,6 +183,11 @@ class WallixSessionGenerator:
             asset = np.random.choice(candidates) if candidates else np.random.choice(self._all_assets)
         else:
             asset = np.random.choice(profile.habitual_assets, p=profile.asset_weights)
+        if anomaly_type == "unusual_country":
+            country = np.random.choice(UNUSUAL_COUNTRIES)
+        else:
+            country = profile.habitual_country
+        country_lat, country_lon = COUNTRY_COORDS[country]
 
         # Durée (log-normale : toujours positive, asymétrique)
         base_duration = np.random.lognormal(
@@ -205,6 +217,9 @@ class WallixSessionGenerator:
             "requestor_user": profile.username,
             "role": profile.role,
             "target_asset": asset,
+            "country": country,
+            "country_lat": country_lat,
+            "country_lon": country_lon,
             "protocol": profile.protocol,
             "start_time": timestamp,
             "duration_minutes": duration_minutes,

@@ -36,6 +36,7 @@ FEATURE_COLUMNS = [
     "commands_count",
     "asset_rarity_score",
     "risk_flag",
+    "country_rarity_score",
 ]
 
 
@@ -80,6 +81,41 @@ def _compute_asset_rarity(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def _compute_country_rarity(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Même logique que _compute_asset_rarity() juste au-dessus, mais appliquée
+    à la colonne "country" (Phase 15) au lieu de "target_asset".
+
+    country_rarity_score = 1 - fréquence_historique(user, country)
+      -> proche de 0 : pays depuis lequel cet utilisateur se connecte souvent
+      -> proche de 1 : pays que cet utilisateur n'a (presque) jamais utilisé
+
+    Pourquoi une fonction séparée plutôt que de réutiliser _compute_asset_rarity
+    telle quelle ? Parce que cette dernière est codée en dur sur les noms de
+    colonnes "requestor_user"/"target_asset"/"asset_rarity_score". On duplique
+    donc la même logique ici avec "country" à la place, plutôt que de la rendre
+    générique tout de suite (pas nécessaire pour l'instant, une seule autre
+    colonne à traiter).
+    """
+    # Nombre de sessions par (utilisateur, pays)
+    user_country_counts = df.groupby(["requestor_user", "country"]).size()
+    # Nombre total de sessions par utilisateur (déjà calculé une fois dans
+    # _compute_asset_rarity, mais on le recalcule ici : cette fonction doit
+    # pouvoir tourner seule, sans dépendre de l'ordre d'exécution des autres).
+    user_totals = df.groupby("requestor_user").size()
+
+    freq = user_country_counts / user_totals
+    freq_lookup = freq.to_dict()  # clé = (user, country) -> fréquence
+
+    def rarity_for_row(row):
+        key = (row["requestor_user"], row["country"])
+        frequence_habituelle = freq_lookup.get(key, 0.0)
+        return 1.0 - frequence_habituelle
+
+    df["country_rarity_score"] = df.apply(rarity_for_row, axis=1)
+    return df
+
+
 def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     Point d'entrée principal : prend le DataFrame brut (sortie de
@@ -94,6 +130,10 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
 
     df = _encode_hour_cyclic(df)
     df = _compute_asset_rarity(df)
+    # Phase 15 : même principe que la rareté d'asset, appliqué au pays de
+    # connexion. Ajoutée après _compute_asset_rarity() par cohérence (les
+    # deux scores de "rareté" restent groupés dans le code).
+    df = _compute_country_rarity(df)
 
     # risk_flag est déjà numérique (0/1), duration_minutes et commands_count aussi
     # -> rien à transformer de plus pour ces colonnes
