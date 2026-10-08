@@ -22,6 +22,11 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+# Import relatif (".wallix_agent") car ce fichier vit dans le même package
+# core/ que wallix_agent.py — même convention que core/audit.py qui importe
+# ".config" plus haut dans le projet.
+from .wallix_agent import explain_session
+
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "wallix_sessions_scored.csv"
 
 
@@ -130,6 +135,53 @@ def render_wallix_dashboard() -> None:
         use_container_width=True,
         height=400,
     )
+
+    st.divider()
+
+    # ---------------------------------------------------------------- Assistant SOC (Phase 16)
+    st.markdown("**🤖 Assistant SOC — expliquer une session**")
+    st.caption(
+        "Sélectionne une session signalée suspecte et demande à Claude (API Anthropic) "
+        "de rédiger une courte note d'analyste expliquant ce qui est suspect, et pourquoi."
+    )
+
+    # On ne propose à l'explication que les sessions déjà signalées par le
+    # modèle (predicted_anomaly == 1) : ce sont les seules qui ont un intérêt
+    # à être analysées ici.
+    # Remarque : à ce stade du projet, seul Isolation Forest écrit ses
+    # prédictions dans data/wallix_sessions_scored.csv (le fichier lu par ce
+    # dashboard, colonne predicted_anomaly). LOF (Phase 14) n'est comparé que
+    # dans un script séparé (scripts/phase14_lof_main.py) et n'alimente pas
+    # encore cette colonne — donc "au moins un des deux modèles" correspond
+    # ici, concrètement, à ce que ce fichier sait déjà représenter.
+    df_anomalous = df[df["predicted_anomaly"] == 1].copy()
+
+    if df_anomalous.empty:
+        st.info("Aucune session signalée suspecte à expliquer pour le moment.")
+    else:
+        # Libellé lisible par session (session_id + utilisateur + type
+        # d'anomalie) : plus facile à repérer dans un menu déroulant que des
+        # identifiants bruts. session_id est unique par session, donc ce
+        # libellé l'est aussi (pas de risque de confusion entre deux options).
+        df_anomalous["libelle"] = (
+            df_anomalous["session_id"] + " — " + df_anomalous["requestor_user"]
+            + " (" + df_anomalous["anomaly_type"].astype(str) + ")"
+        )
+
+        selected_label = st.selectbox("Session à expliquer", df_anomalous["libelle"].tolist())
+
+        # On retrouve la ligne complète (toutes les colonnes) correspondant
+        # au libellé choisi, pour la transmettre telle quelle à explain_session()
+        # — c'est elle qui décide ensuite quelles colonnes utiliser dans le prompt.
+        selected_session = df_anomalous[df_anomalous["libelle"] == selected_label].iloc[0]
+
+        if st.button("Expliquer cette session"):
+            # st.spinner affiche un indicateur de chargement pendant l'appel
+            # réseau à l'API Anthropic (qui peut prendre quelques secondes),
+            # pour que l'utilisateur comprenne que le dashboard n'est pas figé.
+            with st.spinner("Claude analyse la session..."):
+                explication = explain_session(selected_session)
+            st.info(explication)
 
     st.divider()
 
