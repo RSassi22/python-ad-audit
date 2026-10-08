@@ -52,7 +52,7 @@ Nom suggéré : docs/screenshots/architecture_globale.png
 -->
 ![Architecture globale](docs/screenshots/architecture_globale.png)
 
----
+--- 
 
 ## 🧩 Fonctionnalités par module
 
