@@ -50,7 +50,7 @@ même simple : boîtes + flèches représentant le flux ci-dessus). Peut être f
 avec draw.io, excalidraw, ou généré en Python/matplotlib.
 Nom suggéré : docs/screenshots/architecture_globale.png
 -->
-![Architecture globale](C:\Users\rayen\Desktop\Stage UIB\captures\architecture_globale.png)
+![Architecture globale](docs/screenshots/architecture_globale.png)
 
 --- 
 
